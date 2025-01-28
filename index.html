@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>请选择包含红绿灯的所有图片。</title>
+    <style>
+    /* 基本样式 */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        display: flex;
+        flex-direction: column; /* Arrange children vertically */
+        align-items: center; /* Center content horizontally */
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        padding: 20px;
+        width: fit-content; /* Fit width to its content */
+    }
+    /* 提示信息 */
+    .message {
+      background-color: #5d91e5;
+      color: white;
+        font-size: 18px;
+      padding: 15px;
+      margin-bottom: 10px;
+        border-radius: 5px;
+    }
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: repeat(3, 100px);
+        gap: 4px;
+        margin-bottom: 10px;
+    }
+
+    .grid-item {
+        border: 1px solid lightgrey;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .grid-item video {
+        object-fit: cover; /* Ensures video fills the container */
+        width: 100%;
+        height: 100%;
+    }
+
+    .btn {
+        display: block;
+        width: fit-content; /* Set width to the content of its child text */
+        padding: 10px 15px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: #529fe1;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: #3c8cce;
+    }
+
+    .option_and_confirm_container {
+        display: flex;
+        align-items: center;
+    }
+
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message">
+           请选择包含
+             <span style="font-weight:bold; font-size:22px; padding:5px; color:white; background-color:rgb(233,77,74);">红绿灯</span> 的所有图片。
+        </div>
+
+        <div class="grid-container">
+              <div class="grid-item">
+                <video autoplay muted loop>
+                    <source src="image/part_1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+              </div>
+              <div class="grid-item">
+                    <video autoplay muted loop>
+                        <source src="image/part_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+               </div>
+               <div class="grid-item">
+                    <video autoplay muted loop>
+                        <source src="image/part_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="grid-item">
+                    <video autoplay muted loop>
+                        <source src="image/part_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+               <div class="grid-item">
+                    <video autoplay muted loop>
+                        <source src="image/part_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="grid-item">
+                    <video autoplay muted loop>
+                        <source src="image/part_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+               <div class="grid-item">
+                    <video autoplay muted loop>
+                        <source src="image/part_7.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+               <div class="grid-item">
+                    <video autoplay muted loop>
+                        <source src="image/part_8.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+               <div class="grid-item">
+                    <video autoplay muted loop>
+                        <source src="image/part_9.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+         </div>
+
+         <div class="option_and_confirm_container">
+            <img src="image/截屏2025-01-28 18.25.40.png" style="width: 30px; height: 35px;" />
+             <img style="width: 30px; height: 30px;" src="image/截屏2025-01-28 18.25.51.png"/>
+             <button class="btn" onclick="window.location.href='https://www.bilibili.com/video/BV1UT42167xb/?spm_id_from=333.337.search-card.all.click&vd_source=cf067f4fd61dca18c2400f9d294126fc'">验证</button>
+         </div>
+
+    </div>
+</body>
+</html>
