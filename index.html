@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>你是人机（机器人）吗</title>
-    <style>
+  <style>
     body {
         font-family: Arial, sans-serif;
         background-color: #f0f0f0;
@@ -27,10 +27,10 @@
     .message {
       background-color: #5d91e5;
       color: white;
-        font-size: 18px;
+      font-size: 18px;
       padding: 15px;
       margin-bottom: 10px;
-        border-radius: 5px;
+      border-radius: 5px;
     }
     .grid-container {
         display: grid;
@@ -39,7 +39,6 @@
         gap: 4px;
         margin-bottom: 10px;
     }
-
     .grid-item {
         border: 1px solid lightgrey;
         width: 100%;
@@ -49,13 +48,12 @@
         justify-content: center;
         overflow: hidden;
     }
-
     .grid-item video {
         object-fit: cover;
         width: 100%;
         height: 100%;
+        display: none;  /* 视频初始不可见 */
     }
-
     .btn {
         display: block;
         width: fit-content;
@@ -68,11 +66,9 @@
         font-size: 14px;
         cursor: pointer;
     }
-
     .btn:hover {
         background-color: #3c8cce;
     }
-
     .option_and_confirm_container {
         display: flex;
         align-items: center;
@@ -88,61 +84,61 @@
 
         <div class="grid-container">
               <div class="grid-item">
-                <video autoplay muted loop>
+                <video id="video1" autoplay muted loop>
                     <source src="image/part_1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
               </div>
               <div class="grid-item">
-                    <video autoplay muted loop>
+                    <video id="video2" autoplay muted loop>
                         <source src="image/part_2.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                </div>
                <div class="grid-item">
-                    <video autoplay muted loop>
+                    <video id="video3" autoplay muted loop>
                         <source src="image/part_3.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
 
                 <div class="grid-item">
-                    <video autoplay muted loop>
+                    <video id="video4" autoplay muted loop>
                         <source src="image/part_4.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
 
                <div class="grid-item">
-                    <video autoplay muted loop>
+                    <video id="video5" autoplay muted loop>
                         <source src="image/part_5.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
 
                 <div class="grid-item">
-                    <video autoplay muted loop>
+                    <video id="video6" autoplay muted loop>
                         <source src="image/part_6.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
 
                <div class="grid-item">
-                    <video autoplay muted loop>
+                    <video id="video7" autoplay muted loop>
                         <source src="image/part_7.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
 
                <div class="grid-item">
-                    <video autoplay muted loop>
+                    <video id="video8" autoplay muted loop>
                         <source src="image/part_8.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
 
                <div class="grid-item">
-                    <video autoplay muted loop>
+                    <video id="video9" autoplay muted loop>
                         <source src="image/part_9.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -156,5 +152,36 @@
          </div>
 
     </div>
+
+    <script>
+      // 获取所有的视频元素
+      const videos = document.querySelectorAll('video');
+      
+      // 用来存储所有视频的Promise
+      const videoPromises = [];
+
+      // 当某个视频触发canplaythrough事件时
+      function loadVideo(video) {
+        return new Promise((resolve) => {
+          video.addEventListener('canplaythrough', () => {
+            resolve(video);
+          });
+        });
+      }
+
+      // 为每个视频添加加载promise
+      videos.forEach((video) => {
+        videoPromises.push(loadVideo(video));
+      });
+
+      // 等待所有视频加载完成
+      Promise.all(videoPromises).then((videos) => {
+        // 当所有视频加载完成，开始播放并显示
+        videos.forEach((video) => {
+          video.style.display = 'block';  // 显示视频
+          video.play();  // 开始播放
+        });
+      });
+    </script>
 </body>
 </html>
