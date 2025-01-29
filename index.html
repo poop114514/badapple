@@ -156,12 +156,12 @@
     <script>
       // 获取所有的视频元素
       const videos = document.querySelectorAll('video');
-      
+
       // 用来存储所有视频的Promise
       const videoPromises = [];
 
-      // 当某个视频触发canplaythrough事件时
-      function loadVideo(video) {
+      // 函数：等待视频加载并控制播放状态
+      function loadAndPlayVideo(video) {
         return new Promise((resolve) => {
           video.addEventListener('canplaythrough', () => {
             resolve(video);
@@ -169,19 +169,35 @@
         });
       }
 
-      // 为每个视频添加加载promise
+      // 暂停所有视频
+      function pauseAllVideos() {
+        videos.forEach((video) => {
+          video.pause();
+        });
+      }
+
+      // 为每个视频添加加载Promise
       videos.forEach((video) => {
-        videoPromises.push(loadVideo(video));
+        videoPromises.push(loadAndPlayVideo(video));
       });
 
-      // 等待所有视频加载完成
-      Promise.all(videoPromises).then((videos) => {
-        // 当所有视频加载完成，开始播放并显示
-        videos.forEach((video) => {
-          video.style.display = 'block';  // 显示视频
-          video.play();  // 开始播放
-        });
-      });
+      // 等待视频加载并执行播放
+      async function startVideos() {
+        for (let i = 0; i < videoPromises.length; i++) {
+          // 暂停所有视频
+          pauseAllVideos();
+
+          // 等待当前视频加载完毕
+          await videoPromises[i];
+
+          // 当前视频加载完毕后开始播放
+          videos[i].style.display = 'block';
+          videos[i].play();
+        }
+      }
+
+      // 执行视频加载和播放操作
+      startVideos();
     </script>
 </body>
 </html>
